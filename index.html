@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CALCULATOR</title>
+</head>
+
+<body>
+    <HEADER>
+        <h1>CALCULATOR</h1>
+    </HEADER>
+    <div class="board">
+        <input type="text" id="display" placeholder="0">
+        <div class="buttons">
+            <button onclick="ClearAll()">AC</button>
+            <button onclick="AppendValue('%')">%</button>
+            <button onclick="ClearLast()">C</button>
+            <button onclick="AppendValue('/')">/</button>
+        </div>
+        <div class="buttons">
+            <button onclick="AppendValue('7')">7</button>
+            <button onclick="AppendValue('8')">8</button>
+            <button onclick="AppendValue('9')">9</button>
+            <button onclick="AppendValue('*')">*</button>
+        </div>
+        <div class="buttons">
+            <button onclick="AppendValue('4')">4</button>
+            <button onclick="AppendValue('5')">5</button>
+            <button onclick="AppendValue('6')">6</button>
+            <button onclick="AppendValue('-')">-</button>
+        </div>
+        <div class="buttons">
+            <button onclick="AppendValue('1')">1</button>
+            <button onclick="AppendValue('2')">2</button>
+            <button onclick="AppendValue('3')">3</button>
+            <button onclick="AppendValue('+')">+</button>
+        </div>
+        <div class="buttons">
+            <button onclick="AppendValue('00')">00</button>
+            <button onclick="AppendValue('0')">0</button>
+            <button onclick="AppendValue('.')">.</button>
+            <button onclick="Calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function ClearAll() {
+            document.getElementById("display").value = '';
+        }
+        function AppendValue(target) {
+            document.getElementById("display").value += target;
+        }
+        function Calculate() {
+            let expression = document.getElementById('display').value;
+            let result = eval(expression);
+            document.getElementById('display').value = result;
+        }
+        function ClearLast() {
+            let display = document.getElementById("display");
+            let value = display.value;
+            value = value.slice(0, -1);
+            display.value = value;
+        }
+        document.addEventListener("keydown", (event)=> {
+            if (event.key === "Enter") {
+                Calculate();
+            }
+        });
+    </script>
+</body>
+
+</html>
